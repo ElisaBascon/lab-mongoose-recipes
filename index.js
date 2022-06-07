@@ -17,15 +17,17 @@ mongoose
     return Recipe.deleteMany()
   })
   .then(() => {
-    const arrozConBogavante = new Recipe ({ 
+    Recipe.create({ 
         title: 'Arroz con Bogavante',
         ingredients: ['arroz', 'bogavante'],
         cuisine: 'mediterranean',
         dishType: 'main_course',
         duration: 30,
       })
-    arrozConBogavante.save()
-    console.log(`The ${arrozConBogavante.title} recipe`)
+  })
+
+  .then((newRecipe) => {
+    console.log(newRecipe)
   })
 
   .then(() => {
@@ -33,7 +35,6 @@ mongoose
   })
 
   .then(() => {
-    console.log('Recipes: ${recipeSchema.title}') //Esto no me funciona, entiendo que tendré que hacer un ForEach en otro .then??
     return Recipe.findOneAndUpdate({title: 'Rigatoni alla Genovese'}, {duration:100})
   })
 
